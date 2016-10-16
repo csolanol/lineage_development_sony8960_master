@@ -1,0 +1,4 @@
+[submodule "lineage-next"]
+	path = lineage-next
+	url = git@github.com:lineage-next/local_manifests.git
+	branch = lineage-15.0

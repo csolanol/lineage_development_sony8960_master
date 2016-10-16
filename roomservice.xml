@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Project: 'https://github.com/AdrianDC/lineage_development_sony8960_master' -->
+<!-- Repo Init: 'repoinitaosp master' -->
+<!-- Untracked: 'android_development_manifests/untracked-aosp-master' -->
+<manifest>
+
+  <!-- GitHub Remotes for Projects -->
+  <remote name="github_devices" fetch="https://github.com" revision="refs/heads/cm-14.1" />
+
+  <!-- SONY Common Projects -->
+  <project name="AdrianDC/aosp_development_sony8960_master" path="device/qcom/common" remote="github_devices" revision="device_qcom_common" />
+  <project name="LineageOS/android_device_sony_common" path="device/sony/common" remote="github_devices" />
+  <project name="LineageOS/android_hardware_qcom_fm" path="hardware/qcom/fm" remote="github_devices" />
+  <project name="LineageOS/android_hardware_sony_DASH" path="hardware/sony/DASH" remote="github_devices" />
+  <project name="LineageOS/android_hardware_sony_thermanager" path="hardware/sony/thermanager" remote="github_devices" />
+  <project name="LineageOS/android_packages_apps_FMRadio" path="packages/apps/FMRadio" remote="github_devices" />
+  <project name="LineageOS/android_packages_resources_devicesettings" path="packages/resources/devicesettings" remote="github_devices" />
+
+  <!-- SONY Vendor Projects -->
+  <project name="AdrianDC/proprietary_vendor_sony" path="vendor/sony" remote="github_devices" />
+
+  <!-- SONY 8960 Huashan Projects -->
+  <project name="AdrianDC/aosp_development_sony8960_master" path="device/sony/huashan" remote="github_devices" revision="device_sony_huashan" />
+  <project name="AdrianDC/android_kernel_sony_msm8960t" path="kernel/sony/msm8960t" remote="github_devices" revision="master" />
+
+  <!-- SONY 8960 Blue Projects -->
+  <project name="AdrianDC/aosp_development_sony8960_master" path="device/sony/blue-common" remote="github_devices" revision="device_sony_blue-common" />
+  <project name="AdrianDC/aosp_development_sony8960_master" path="device/sony/hayabusa" remote="github_devices" revision="device_sony_hayabusa" />
+  <project name="AdrianDC/aosp_development_sony8960_master" path="device/sony/mint" remote="github_devices" revision="device_sony_mint" />
+  <project name="AdrianDC/aosp_development_sony8960_master" path="device/sony/tsubasa" remote="github_devices" revision="device_sony_tsubasa" />
+  <project name="AdrianDC/android_kernel_sony_msm8x60" path="kernel/sony/msm8x60" remote="github_devices" revision="master" />
+
+</manifest>
