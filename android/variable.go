@@ -20,8 +20,6 @@ import (
 	"runtime"
 	"strings"
 
-	"lineage/soong/android"
-
 	"github.com/google/blueprint/proptools"
 )
 
@@ -29,6 +27,16 @@ func init() {
 	PreDepsMutators(func(ctx RegisterMutatorsContext) {
 		ctx.BottomUp("variable", variableMutator).Parallel()
 	})
+}
+
+type Extended_product_variables struct {
+	Needs_text_relocations struct {
+		Cppflags []string
+	}
+}
+
+type ExtendedProductVariables struct {
+	Needs_text_relocations  *bool `json:",omitempty"`
 }
 
 type variableProperties struct {
@@ -89,7 +97,7 @@ type variableProperties struct {
 		}
 
 		// include Lineage variables
-		*android.Product_variables
+		Extended_product_variables
 	} `android:"arch_variant"`
 }
 
@@ -156,8 +164,7 @@ type productVariables struct {
 
 	Override_rs_driver *string `json:",omitempty"`
 
-	// include Lineage variables
-	*android.ProductVariables
+	Extended_product_variables
 }
 
 func boolPtr(v bool) *bool {
@@ -210,11 +217,22 @@ func variableMutator(mctx BottomUpMutatorContext) {
 	variableValues := reflect.ValueOf(&a.variableProperties.Product_variables).Elem()
 	zeroValues := reflect.ValueOf(zeroProductVariables.Product_variables)
 
+	variableMutatorIterator(mctx, a, variableValues, zeroValues)
+}
+
+func variableMutatorIterator(mctx BottomUpMutatorContext, a *ModuleBase, variableValues reflect.Value, zeroValues reflect.Value) {
 	for i := 0; i < variableValues.NumField(); i++ {
 		variableValue := variableValues.Field(i)
 		zeroValue := zeroValues.Field(i)
 		name := variableValues.Type().Field(i).Name
 		property := "product_variables." + proptools.PropertyNameForField(name)
+
+		// Check if the variable is a structure
+		if variableValue.IsValid() && variableValue.Kind() == reflect.Struct {
+			variableMutatorIterator(mctx, a, variableValue, zeroValues)
+		}
+
+		print(name + "\n")
 
 		// Check that the variable was set for the product
 		val := reflect.ValueOf(mctx.Config().(Config).ProductVariables).FieldByName(name)
