@@ -44,6 +44,9 @@ repopick 186455 186900 186901;
 ## # hardware/qcom/wlan
 repopick 186300;
 
+## # hardware/qcom/wlan-caf
+repopick 187865;
+
 ## # hardware/sony/DASH
 repopick 186924 186925 186926;
 
